@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tables</title>
+</head>
+<body>
+    <h1>Select Table in <%= module %></h1>
+    <form action="/view-table" method="post">
+        <label for="table">Table:</label>
+        <select name="table" id="table">
+            <% tables.forEach(table => { %>
+                <option value="<%= table[0] %>"><%= table[0] %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

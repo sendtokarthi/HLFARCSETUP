@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Table</title>
+</head>
+<body>
+    <h1>View Table: <%= table %></h1>
+    <form action="/update-table" method="post">
+        <table border="1">
+            <thead>
+                <tr>
+                    <% columns.forEach(column => { %>
+                        <th><%= column.name %></th>
+                    <% }) %>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (rows.length > 0) { %>
+                    <% rows.forEach((row, rowIndex) => { %>
+                        <tr>
+                            <% columns.forEach((column, colIndex) => { %>
+                                <td>
+                                    <% if (column.type === 'DATE') {  %>
+                                        <input type="text" name="data[<%= rowIndex %>][<%= column.name %>]" value="<%= formatDate(row[colIndex]) %>">
+                                    <% } else { %>
+                                        <input type="text" name="data[<%= rowIndex %>][<%= column.name %>]" value="<%= row[colIndex] %>">
+                                    <% } %>
+                                </td>
+                            <% }) %>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="<%= columns.length %>">No data available</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <input type="hidden" name="table" value="<%= table %>">
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

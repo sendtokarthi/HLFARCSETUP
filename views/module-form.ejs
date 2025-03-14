@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Module</title>
+</head>
+<body>
+    <h1>Select Module</h1>
+    <form id="moduleForm" action="/tables" method="post">
+        <label for="module">Module:</label>
+        <select name="module" id="module">
+            <% modules.forEach(module => { %>
+                <option value="<%= module[0] %>"><%= module[0] %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
