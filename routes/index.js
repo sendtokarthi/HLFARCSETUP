@@ -191,7 +191,7 @@ router.post('/update-table', async (req, res) => {
                 updateValues[column] = row[column];
             }
             const updateQuery = `UPDATE ${table} SET ${updateColumns.join(', ')} WHERE ORG_ID=:ORG_ID `;
-
+         //  console.log(updateQuery, updateValues);
             await connection.execute(updateQuery, updateValues);
         }
         await connection.commit();

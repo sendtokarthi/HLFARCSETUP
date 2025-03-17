@@ -3,6 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>View Table</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const inputs = form.querySelectorAll('input[type="text"]');
+            const modifiedRows = new Set();
+
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const rowIndex = this.name.match(/\d+/)[0];
+                    modifiedRows.add(rowIndex);
+                });
+            });
+
+            form.addEventListener('submit', function(event) {
+                modifiedRows.forEach(rowIndex => {
+                    const rowInputs = form.querySelectorAll(`input[name^="data[${rowIndex}]"]`);
+                    rowInputs.forEach(input => {
+                        input.disabled = false;
+                    });
+                });
+
+                inputs.forEach(input => {
+                    const rowIndex = input.name.match(/\d+/)[0];
+                    if (!modifiedRows.has(rowIndex)) {
+                        input.disabled = true;
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>View Table: <%= table %></h1>
