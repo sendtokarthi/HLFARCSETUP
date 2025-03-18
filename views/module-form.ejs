@@ -3,17 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Select Module</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            color: #2e7d32;
+        }
+        .container label {
+            display: block;
+            margin-bottom: 8px;
+            text-align: left;
+            color: #2e7d32;
+        }
+        .container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2e7d32;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #1b5e20;
+        }
+    </style>
 </head>
 <body>
-    <h1>Select Module</h1>
-    <form id="moduleForm" action="/tables" method="post">
-        <label for="module">Module:</label>
-        <select name="module" id="module">
-            <% modules.forEach(module => { %>
-                <option value="<%= module[0] %>"><%= module[0] %></option>
-            <% }) %>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Select Module</h1>
+        <form id="moduleForm" action="/tables" method="post">
+            <label for="module">Module:</label>
+            <select name="module" id="module">
+                <% modules.forEach(module => { %>
+                    <option value="<%= module[0] %>"><%= module[0] %></option>
+                <% }) %>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
